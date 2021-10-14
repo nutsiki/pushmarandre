@@ -67,13 +67,15 @@ int	hold_second(t_piles *piles, int index)
 	return (j);
 }
 
-void	prepare_b(t_piles *piles, int size, int max, int previous)
+void	prepare_b(t_piles *piles, int size, int max)
 {
 	t_list	*tmp;
 	int		i;
+	int		previous;
 
-	tmp = piles->list_b;
 	i = 0;
+	tmp = piles->list_b;
+	previous = ft_lstlast(piles->list_b)->content;
 	while (tmp && ((piles->list_a->content < tmp->content)
 			|| (piles->list_a->content > previous)))
 	{
@@ -82,18 +84,15 @@ void	prepare_b(t_piles *piles, int size, int max, int previous)
 		i++;
 	}
 	if (!tmp && i == size)
-	{
 		while (piles->list_b->content != max)
 			reverse_b(piles);
-		push_b(piles);
-		return ;
-	}
-	if (i <= (size / 2))
+	else if (i <= (size / 2))
 		while (i--)
 			rotate_b(piles);
 	else if (i)
 		while (i++ < size)
 			reverse_b(piles);
+	push_b(piles);
 }
 
 void	make_chunk(t_piles *piles, int size, int index)
@@ -101,7 +100,6 @@ void	make_chunk(t_piles *piles, int size, int index)
 	int	i;
 	int	j;
 	int	size_b;
-	int	previous;
 
 	i = hold_first(piles, index);
 	j = hold_second(piles, index);
@@ -112,6 +110,7 @@ void	make_chunk(t_piles *piles, int size, int index)
 	else
 		while (j++ < size)
 			reverse_a(piles);
+	i = find_max(piles, 0, size_b);
 	if (!piles->list_b || !piles->list_b->next)
 	{
 		push_b(piles);
@@ -120,7 +119,5 @@ void	make_chunk(t_piles *piles, int size, int index)
 	if (!piles->list_b->next->next
 		&& (piles->list_b->content < piles->list_b->next->content))
 		swap_b(piles);
-	previous = ft_lstlast(piles->list_b)->content;
-	prepare_b(piles, size_b, find_max(piles, 0, size_b), previous);
-	push_b(piles);
+	prepare_b(piles, size_b, i);
 }

@@ -32,6 +32,8 @@ char	*make_previous(t_piles *piles, char *str)
 	if (str && *str)
 		free(str);
 	previous = ft_calloc(sizeof(char), 5);
+	if (!previous)
+		exit(1);
 	str = previous;
 	while (piles->action && *piles->action != '\n')
 		*previous++ = *piles->action++;

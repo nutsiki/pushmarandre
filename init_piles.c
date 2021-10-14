@@ -74,7 +74,7 @@ t_piles	*init_piles(void)
 
 	piles = (t_piles *)malloc(sizeof(t_piles));
 	if (!piles)
-		exit(0);
+		exit(1);
 	ft_bzero(piles, sizeof(t_piles));
 	piles->action = ft_calloc(sizeof(char), BUFFER_SIZE);
 	piles->pos = 0;

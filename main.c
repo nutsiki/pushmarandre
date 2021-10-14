@@ -31,4 +31,9 @@ int	main(int argc, char **argv)
 	else if (piles->size == 500)
 		algo_500(piles);
 	clean_action(piles);
+//	free(piles->action);
+	free(piles->list_a);
+	free(piles->list_b);
+	free(piles->sorted);
+	free(piles);
 }

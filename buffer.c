@@ -15,7 +15,7 @@
 char	*ft_putstr_fd_err(char *s, int fd)
 {
 	if (!s && fd < 0)
-		return (NULL);
+		exit(1);
 	write(fd, s, ft_strlen(s));
 	exit(1);
 	return (NULL);
@@ -42,8 +42,6 @@ t_piles	*more_size(t_piles *piles)
 	new_buff = piles->action;
 	piles->length += BUFFER_SIZE;
 	piles->action = (char *)ft_calloc(sizeof(char), piles->length);
-	if (!(piles->action))
-		return (NULL);
 	piles->action = ft_memcpy(piles->action, new_buff, piles->pos);
 	free((void *)new_buff);
 	return (piles);

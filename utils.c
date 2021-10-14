@@ -38,7 +38,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	p = (char *)malloc(count * size);
 	if (!p)
-		return (NULL);
+		exit(1);
 	count *= size;
 	pp = p;
 	while (count--)
