@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moakouda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moakouda <moakouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 13:02:32 by moakouda          #+#    #+#             */
-/*   Updated: 2021/10/14 13:02:37 by moakouda         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:46:35 by moakouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ t_piles	*push_b(t_piles *piles)
 
 	if (piles->list_a == NULL)
 		return (piles);
-	new = NULL;
 	tmp_lsta = piles->list_a;
-	tmp_lstb = NULL;
+	tmp_lstb = piles->list_b;
+	new = NULL;
 	tmp = piles->list_a->content;
-	if (piles->list_b)
-		tmp_lstb = piles->list_b;
 	new = ft_lstnew(tmp);
 	piles->list_b = new;
 	piles->list_b->next = tmp_lstb;
 	piles->list_a = tmp_lsta->next;
+	free(tmp_lsta);
 	fill_buffer_str("pb\n", piles);
 	return (piles);
 }
@@ -46,14 +45,13 @@ t_piles	*push_a(t_piles *piles)
 		return (piles);
 	new = NULL;
 	tmp_lstb = piles->list_b;
-	tmp_lsta = NULL;
+	tmp_lsta = piles->list_a;
 	tmp = piles->list_b->content;
-	if (piles->list_a)
-		tmp_lsta = piles->list_a;
 	new = ft_lstnew(tmp);
 	piles->list_a = new;
 	piles->list_a->next = tmp_lsta;
 	piles->list_b = tmp_lstb->next;
+	free(tmp_lstb);
 	fill_buffer_str("pa\n", piles);
 	return (piles);
 }

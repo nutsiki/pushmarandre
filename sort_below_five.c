@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_below_five.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moakouda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moakouda <moakouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 13:52:11 by moakouda          #+#    #+#             */
-/*   Updated: 2021/10/14 13:52:13 by moakouda         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:52:42 by moakouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	sort_below_five(t_piles *piles)
 		before_push_b(piles, 5);
 		push_b(piles);
 		if (piles->list_b->content < piles->list_b->next->content)
+		{
 			swap_b(piles);
+		}
 		sort_three(piles);
 		push_a(piles);
 		push_a(piles);

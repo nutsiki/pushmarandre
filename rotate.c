@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moakouda <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: moakouda <moakouda@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 13:07:21 by moakouda          #+#    #+#             */
-/*   Updated: 2021/10/14 13:07:23 by moakouda         ###   ########.fr       */
+/*   Updated: 2021/10/15 22:59:47 by moakouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_piles	*rotate_a(t_piles *piles)
 		return (piles);
 	tmp = tmp_lst->content;
 	piles->list_a = tmp_lst->next;
+	free(tmp_lst);
+	tmp_lst = piles->list_a;
 	while (tmp_lst->next != NULL)
 		tmp_lst = tmp_lst->next;
 	tmp_lst->next = ft_lstnew(tmp);
@@ -39,6 +41,8 @@ t_piles	*rotate_b(t_piles *piles)
 		return (piles);
 	tmp = tmp_lst->content;
 	piles->list_b = tmp_lst->next;
+	free(tmp_lst);
+	tmp_lst = piles->list_b;
 	while (tmp_lst->next != NULL)
 		tmp_lst = tmp_lst->next;
 	tmp_lst->next = ft_lstnew(tmp);
