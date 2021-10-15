@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void free_piles(t_piles *piles)
+void	free_piles(t_piles *piles)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	while (piles->list_a)
 	{
@@ -54,19 +54,5 @@ int	main(int argc, char **argv)
 		algo_500(piles);
 	clean_action(piles);
 	free_piles(piles);
-//	while (piles->list_a)
-//	{
-//		tmp = piles->list_a->next;
-//		free(piles->list_a);
-//		piles->list_a = tmp;
-//	}
-//	while (piles->sorted)
-//	{
-//		tmp = piles->sorted->next;
-//		free(piles->sorted);
-//		piles->sorted = tmp;
-//	}
-//	free(piles->sorted);
-//	free(piles);
 	return (0);
-	}
+}
