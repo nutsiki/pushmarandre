@@ -22,12 +22,14 @@ int	check_list(int i, char **argv, int *tab)
 			&& j == 0))
 		j++;
 	if ((size_t)j != ft_strlen(argv[i]))
-		ft_putstr_fd_err("NOT DIGIT", 2);
+		ft_putstr_fd_err("Error\n", 2);
 	nb = ft_atoi(argv[i]);
+	if (nb > 2147483647 || nb < -2147483648)
+		ft_putstr_fd_err("Error\n", 2);
 	j = -1;
 	while (tab[++j])
 		if (tab[j] == nb)
-			ft_putstr_fd_err("DOUBLON", 2);
+			ft_putstr_fd_err("Error\n", 2);
 	return (nb);
 }
 
@@ -50,6 +52,7 @@ t_list	*fill_list(int argc, char **argv)
 		tmp = new;
 		i--;
 	}
+	free(tab);
 	return (tmp);
 }
 

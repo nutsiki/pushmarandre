@@ -6,11 +6,30 @@
 /*   By: moakouda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 10:37:00 by moakouda          #+#    #+#             */
-/*   Updated: 2021/10/14 10:37:06 by moakouda         ###   ########.fr       */
+/*   Updated: 2021/10/15 19:26:57 by moakouda         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void free_piles(t_piles *piles)
+{
+	t_list *tmp;
+
+	while (piles->list_a)
+	{
+		tmp = piles->list_a->next;
+		free(piles->list_a);
+		piles->list_a = tmp;
+	}
+	while (piles->sorted)
+	{
+		tmp = piles->sorted->next;
+		free(piles->sorted);
+		piles->sorted = tmp;
+	}
+	free(piles);
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,7 +42,10 @@ int	main(int argc, char **argv)
 	piles->size = ft_lstsize(piles->list_a);
 	piles->sorted = sort_piles(piles);
 	if (is_already_sorted(piles))
+	{
+		free_piles(piles);
 		return (1);
+	}
 	if (piles->size <= 5)
 		sort_below_five(piles);
 	else if (piles->size == 100)
@@ -31,9 +53,20 @@ int	main(int argc, char **argv)
 	else if (piles->size == 500)
 		algo_500(piles);
 	clean_action(piles);
-//	free(piles->action);
-	free(piles->list_a);
-	free(piles->list_b);
-	free(piles->sorted);
-	free(piles);
-}
+	free_piles(piles);
+//	while (piles->list_a)
+//	{
+//		tmp = piles->list_a->next;
+//		free(piles->list_a);
+//		piles->list_a = tmp;
+//	}
+//	while (piles->sorted)
+//	{
+//		tmp = piles->sorted->next;
+//		free(piles->sorted);
+//		piles->sorted = tmp;
+//	}
+//	free(piles->sorted);
+//	free(piles);
+	return (0);
+	}

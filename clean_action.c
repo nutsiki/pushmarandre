@@ -29,7 +29,7 @@ char	*make_previous(t_piles *piles, char *str)
 {
 	char	*previous;
 
-	if (str && *str)
+	if (str)
 		free(str);
 	previous = ft_calloc(sizeof(char), 5);
 	if (!previous)
@@ -72,10 +72,12 @@ void	clean_action(t_piles *piles)
 	int		cpt;
 	int		old_cpt;
 	char	*str;
+	char	*tmp;
 
 	cpt = 1;
 	old_cpt = 0;
 	str = NULL;
+	tmp = piles->action;
 	while (*piles->action)
 	{
 		if (str && !ft_strncmp(piles->action, str, 3))
@@ -87,7 +89,8 @@ void	clean_action(t_piles *piles)
 			while (cpt--)
 				write(1, str, 3);
 	}
-	if (str && *str)
+	if (str)
 		free(str);
+	free(tmp);
 	return ;
 }
