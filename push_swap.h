@@ -15,10 +15,6 @@
 # define BUFFER_SIZE 1000
 # include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <stdio.h>
 
 typedef struct s_list
 {
@@ -80,6 +76,7 @@ int		find_sens(t_list **tmp, int *min, int *min_2);
 
 void	make_chunk(t_piles *piles, int size, int index);
 
+void	algo_other(t_piles *piles, int size, int fifth);
 void	algo_100(t_piles *piles);
 void	algo_500(t_piles *piles);
 

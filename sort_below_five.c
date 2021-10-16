@@ -103,9 +103,7 @@ void	sort_below_five(t_piles *piles)
 		before_push_b(piles, 5);
 		push_b(piles);
 		if (piles->list_b->content < piles->list_b->next->content)
-		{
 			swap_b(piles);
-		}
 		sort_three(piles);
 		push_a(piles);
 		push_a(piles);

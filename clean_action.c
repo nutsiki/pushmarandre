@@ -52,8 +52,9 @@ int	find_fusion(t_piles *piles, char *str, int cpt, int *old_cpt)
 			write(1, str, ft_strlen(str));
 		cpt = 1;
 	}
-	else if (str && (strncmp(piles->action, str, 3) == -1
-			|| strncmp(piles->action, str, 3) == 1) && (*piles->action == *str))
+	else if (str && (ft_strncmp(piles->action, str, 3) == -1
+			|| ft_strncmp(piles->action, str, 3) == 1)
+		&& (*piles->action == *str))
 	{
 		*old_cpt = cpt;
 		cpt = 1;
@@ -87,7 +88,7 @@ void	clean_action(t_piles *piles)
 		str = make_previous(piles, str);
 		if (!*piles->action)
 			while (cpt--)
-				write(1, str, 3);
+				write(1, str, ft_strlen(str));
 	}
 	if (str)
 		free(str);

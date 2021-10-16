@@ -35,23 +35,25 @@ int	main(int argc, char **argv)
 {
 	t_piles	*piles;
 
-	piles = init_piles();
 	if (argc < 2)
-		exit(0);
+		return (0);
+	piles = init_piles();
 	piles->list_a = fill_list(argc, argv);
 	piles->size = ft_lstsize(piles->list_a);
 	piles->sorted = sort_piles(piles);
 	if (is_already_sorted(piles))
 	{
 		free_piles(piles);
-		return (1);
+		return (0);
 	}
 	if (piles->size <= 5)
 		sort_below_five(piles);
-	else if (piles->size == 100)
-		algo_100(piles);
 	else if (piles->size == 500)
 		algo_500(piles);
+	else
+		algo_other(piles, piles->size, piles->size / 5);
+	while (piles->list_b)
+		push_a(piles);
 	clean_action(piles);
 	free_piles(piles);
 	return (0);

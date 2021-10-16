@@ -82,28 +82,30 @@ void	algo_500(t_piles *piles)
 	return ;
 }
 
-void	algo_100(t_piles *piles)
+void	algo_other(t_piles *piles, int size, int fifth)
 {
 	int	i;
 
 	i = 0;
-	while (i++ < 20)
-		make_chunk(piles, ft_lstsize(piles->list_a), 19);
-	clean_b(piles, find_max(piles, 0, 20), 20);
-	while (i++ < 41)
-		make_chunk(piles, ft_lstsize(piles->list_a), 39);
-	clean_b(piles, find_max(piles, 0, 40), 40);
-	while (i++ < 62)
-		make_chunk(piles, ft_lstsize(piles->list_a), 59);
-	clean_b(piles, find_max(piles, 0, 60), 60);
-	while (i++ < 83)
-		make_chunk(piles, ft_lstsize(piles->list_a), 79);
-	clean_b(piles, find_max(piles, 0, 80), 80);
-	while (i++ < 101)
-		make_chunk(piles, ft_lstsize(piles->list_a), 96);
-	clean_b(piles, find_max(piles, 0, 97), 97);
-	sort_three(piles);
-	while (piles->list_b)
-		push_a(piles);
+	while (i++ < (fifth * 1))
+		make_chunk(piles, ft_lstsize(piles->list_a), (fifth * 1) - 1);
+	clean_b(piles, find_max(piles, 0, fifth * 1), fifth * 1);
+	while (i++ < (fifth * 2) + 1)
+		make_chunk(piles, ft_lstsize(piles->list_a), (fifth * 2) - 1);
+	clean_b(piles, find_max(piles, 0, fifth * 2), fifth * 2);
+	while (i++ < (fifth * 3) + 2)
+		make_chunk(piles, ft_lstsize(piles->list_a), (fifth * 3) - 1);
+	clean_b(piles, find_max(piles, 0, fifth * 3), fifth * 3);
+	while (i++ < (fifth * 4) + 3)
+		make_chunk(piles, ft_lstsize(piles->list_a), (fifth * 4) - 1);
+	clean_b(piles, find_max(piles, 0, fifth * 4), fifth * 4);
+	while (i++ < size - 3 + 4)
+		make_chunk(piles, ft_lstsize(piles->list_a), size - 3 - 1);
+	clean_b(piles, find_max(piles, 0, size - 3), size - 3);
+	if (ft_lstsize(piles->list_a) == 3)
+		sort_three(piles);
+	else if (piles->list_a->next
+		&& piles->list_a->next->content < piles->list_a->content)
+		swap_a(piles);
 	return ;
 }
